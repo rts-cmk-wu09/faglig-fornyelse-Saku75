@@ -12,11 +12,15 @@
   },
   "tauri": {
     "allowlist": {
-      "all": false
+      "all": false,
+      "window": {
+        "all": false,
+        "setFullscreen": true
+      }
     },
     "bundle": {
       "active": true,
-      "category": "DeveloperTool",
+      "category": "Game",
       "copyright": "",
       "deb": {
         "depends": []
@@ -56,10 +60,10 @@
     "windows": [
       {
         "fullscreen": false,
-        "height": 600,
+        "height": 720,
+        "width": 1280,
         "resizable": true,
-        "title": "Shitting Shiba",
-        "width": 800
+        "title": "Shitting Shiba"
       }
     ]
   }
