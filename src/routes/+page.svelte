@@ -1,1 +1,5 @@
-<h1>Shitting Shiba</h1>
+<script lang="ts">
+  import Board from "$lib/components/Board/Board.svelte";
+</script>
+
+<Board />
