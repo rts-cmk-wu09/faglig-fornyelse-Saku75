@@ -15,7 +15,8 @@
       "all": false,
       "window": {
         "all": false,
-        "setFullscreen": true
+        "setFullscreen": true,
+        "create": true
       }
     },
     "bundle": {
