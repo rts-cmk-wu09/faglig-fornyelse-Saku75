@@ -1,14 +1,29 @@
 <script lang="ts">
   import { appWindow } from "@tauri-apps/api/window";
+  import { Expand, Shrink } from "lucide-svelte";
 
-  async function toggleFullscreen() {
+  let isFullscreen: boolean = false;
+
+  if (window.__TAURI__) {
+    appWindow.isFullscreen().then((fullscreen) => {
+      isFullscreen = fullscreen;
+    });
+  } else {
+    isFullscreen = !!document.fullscreenElement;
+  }
+
+  function toggleFullscreen() {
     if (window.__TAURI__) {
-      appWindow.setFullscreen(!(await appWindow.isFullscreen()));
+      appWindow.setFullscreen(!isFullscreen);
     } else {
-      document.fullscreenElement
-        ? document.exitFullscreen()
-        : document.documentElement.requestFullscreen();
+      if (isFullscreen) {
+        document.exitFullscreen();
+      } else {
+        document.documentElement.requestFullscreen();
+      }
     }
+
+    isFullscreen = !isFullscreen;
   }
 </script>
 
@@ -17,6 +32,10 @@
     class="fixed right-4 top-4 z-50 rounded-md bg-neutral-700 p-2 opacity-25 transition-opacity hover:opacity-75"
     on:click={toggleFullscreen}
   >
-    Fullscreen
+    {#if isFullscreen}
+      <Shrink />
+    {:else}
+      <Expand />
+    {/if}
   </button>
 {/if}
